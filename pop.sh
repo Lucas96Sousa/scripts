@@ -10,6 +10,24 @@ flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flath
 
 flatpak install flathub com.google.AndroidStudio in.srev.guiscrcpy  com.discordapp.Discord io.beekeeperstudio.Studio -y
 
+
+# OH MY ZSH
+
+sudo apt install zsh-autosuggestions zsh-syntax-highlighting zsh -y
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+
+#Open .zshrc
+
+#nvim ~/.zshrc
+
+#Find the line which says plugins=(git).
+
+#Replace that line with plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+
 # Programing modules
 
 sudo apt install gcc build-essentials default-jre default-jdk -y
@@ -24,16 +42,6 @@ export PATH=$PATH:/usr/local/go/bin
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 source $HOME/.cargo/env
-
-#NEOVIM MODULE
-
-sudo apt install software-properties-common  -y
-sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt update 
-sudo apt install neovim -y
-sudo apt install python-dev python-pip python3-dev -y
-sudo apt install python3-setuptools -y
-sudo easy_install3 pip
 
 # VS CODE MODULE
 sudo apt-get install wget gpg
