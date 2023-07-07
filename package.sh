@@ -4,20 +4,6 @@ arch_install() {
     yes | sudo pacman -Syuu
     yes | sudo pacman -Syu base-devel
 
-
-    #Docker
-    wget https://desktop.docker.com/linux/main/amd64/docker-desktop-4.21.1-x86_64.pkg.tar.zst
-
-    yes | sudo pacman -S gnome-terminal
-    yes | sudo pacman -U ./docker-desktop-4.21.1-x86_64.pkg.tar.zst
-
-    systemctl --user start docker-desktop
-    systemctl --user enable docker-desktop
-
-
-    # BRAVE
-    yay -S brave-bin
-
     # Install git and go
     yes | sudo pacman -S git go
 
@@ -26,6 +12,14 @@ arch_install() {
     cd yay
 
     makepkg -si
+    
+    #Docker
+    systemctl --user start docker-desktop
+    systemctl --user enable docker-desktop
+
+
+    # BRAVE
+    yes| yay -S brave-bin docker
 
     # ZSH
     yes | sudo pacman -Sy zsh
@@ -54,7 +48,7 @@ arch_install() {
     yay github-cli
 
     # Java
-    yes | sudo pacman -sS java jre-openjdk jdk-openjdk | grep jre 
+    yes | sudo pacman -sS java jre-openjdk jdk-openjdk | grep jre
 
     # NPM
     yes | sudo pacman -Syu npm nodejs
@@ -67,7 +61,12 @@ arch_install() {
     source ~/.profile
 
     # PYTHON
-    yes | sudo pacman -Syu python3 python-pip 
+    yes | sudo pacman -Syu python3 python-pip
+    
+    
+    #flatpak
+    yes | sudo pacman -Syu flatpak
+    
 
 }
 
@@ -152,6 +151,7 @@ while true; do
     case $choice in
     1) arch_install ;;
     2) deb_install ;;
+    3) exit ;;
     esac
 
     read -p "Press enter to continue...."
