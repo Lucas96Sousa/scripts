@@ -5,6 +5,16 @@ arch_install() {
     yes | sudo pacman -Syu base-devel
 
 
+    #Docker
+    wget https://desktop.docker.com/linux/main/amd64/docker-desktop-4.21.1-x86_64.pkg.tar.zst
+
+    yes | sudo pacman -S gnome-terminal
+    yes | sudo pacman -U ./docker-desktop-4.21.1-x86_64.pkg.tar.zst
+
+    systemctl --user start docker-desktop
+    systemctl --user enable docker-desktop
+
+
     # BRAVE
     yay -S brave-bin
 
