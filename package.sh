@@ -76,20 +76,20 @@ deb_install() {
 
     # Flatpak modules
 
-    sudo apt install flatpak -y
+    #sudo apt install flatpak -y
 
-    flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    #flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio -y
+    #flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio -y
 
     # OH MY ZSH
 
-    sudo apt install zsh-autosuggestions zsh-syntax-highlighting zsh -y
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
-    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+    #sudo apt install zsh-autosuggestions zsh-syntax-highlighting zsh -y
+    #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    #git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    #git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    #git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+    #git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
 
     #Open .zshrc
 
@@ -101,11 +101,11 @@ deb_install() {
 
     # Programing modules
 
-    sudo apt install gcc build-essentials default-jre default-jdk -y
+    sudo apt install gcc build-essential openjdk-17-jdk openjdk-17-jre -y
 
     # GOLANG MODULE INSTALL
-    cd Downloads && wget https://go.dev/dl/go1.20.3.linux-amd64.tar.gz
-    rm -rf /usr/local/go && tar -C /usr/local -xzf go1.20.3.linux-amd64.tar.gz
+    wget https://go.dev/dl/go1.20.3.linux-amd64.tar.gz
+    rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.20.3.linux-amd64.tar.gz
 
     export PATH=$PATH:/usr/local/go/bin
 
@@ -144,7 +144,7 @@ while true; do
     echo "--------------------"
     echo "1. Arch Linux"
     echo "2. Debian bases"
-    echo
+    echo "3. exit"
 
     read -p "Enter number " choice
 
