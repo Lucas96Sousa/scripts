@@ -17,6 +17,8 @@ arch_install() {
     yes | yay -S brave-bin docker
 
     #Docker
+
+    sudo usermod -aG docker $USER
     systemctl --user start docker-desktop
     systemctl --user enable docker-desktop
 
@@ -35,7 +37,7 @@ arch_install() {
     sudo tar -xf 1password-latest.tar.gz
     sudo mkdir -p /opt/1Password
     sudo mv 1password-*/* /opt/1Password
-     sudo /opt/1Password/after-install.sh
+     sudo /opt/1Password/after-install.sh2
 
     # Java
     yes | sudo pacman -S jdk17-openjdk
