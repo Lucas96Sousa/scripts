@@ -4,38 +4,21 @@ arch_install() {
     yes | sudo pacman -Syuu
     yes | sudo pacman -Syu base-devel
 
-    # Install git and go
-    yes | sudo pacman -S git go
+    # Install git, go, curl
+    yes | sudo pacman -S git go curl
 
     # Install yay
     git clone https://aur.archlinux.org/yay.git
     cd yay
 
-    makepkg -si
-    
+    yes | makepkg -si
+
+    # BRAVE
+    yes | yay -S brave-bin docker
+
     #Docker
     systemctl --user start docker-desktop
     systemctl --user enable docker-desktop
-
-
-    # BRAVE
-    yes| yay -S brave-bin docker
-
-    # ZSH
-    yes | sudo pacman -Sy zsh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
-    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
-
-    #Open .zshrc
-
-    #nano ~/.zshrc
-
-    #Find the line which says plugins=(git).
-
-    #Replace that line with plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
 
     # Programing modules
 
@@ -47,8 +30,15 @@ arch_install() {
     # GH
     yay github-cli
 
+    #1
+    curl -sSO https://downloads.1password.com/linux/tar/stable/x86_64/1password-latest.tar.gz
+    sudo tar -xf 1password-latest.tar.gz
+    sudo mkdir -p /opt/1Password
+    sudo mv 1password-*/* /opt/1Password
+     sudo /opt/1Password/after-install.sh
+
     # Java
-    yes | sudo pacman -sS java jre-openjdk jdk-openjdk | grep jre
+    yes | sudo pacman -S jdk17-openjdk
 
     # NPM
     yes | sudo pacman -Syu npm nodejs
@@ -62,11 +52,29 @@ arch_install() {
 
     # PYTHON
     yes | sudo pacman -Syu python3 python-pip
-    
-    
+
     #flatpak
     yes | sudo pacman -Syu flatpak
-    
+    flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y
+
+    # ZSH
+
+    # yes | sudo pacman -Sy zsh
+    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    # git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+    # git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+
+    #Open .zshrc
+
+    #nano ~/.zshrc
+
+    #Find the line which says plugins=(git).
+
+    #Replace that line with plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
 
 }
 
@@ -80,7 +88,7 @@ deb_install() {
 
     #flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-    #flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio -y
+    #flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y
 
     # OH MY ZSH
 
