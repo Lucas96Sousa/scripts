@@ -13,14 +13,14 @@ arch_install() {
 
     yes | makepkg -si
 
-    # BRAVE
+    # BRAVE AND DOCKER
     yes | yay -S brave-bin docker
 
     #Docker
 
     sudo usermod -aG docker $USER
-    systemctl --user start docker-desktop
-    systemctl --user enable docker-desktop
+    sudo systemctl start docker
+    sudo systemctl enable docker
 
     # Programing modules
 
@@ -33,14 +33,14 @@ arch_install() {
     yay github-cli
 
     # CODE
-    yes | sudo pacman -Sy code
+    yes | yay -S visual-studio-code-bin
 
     #1
     curl -sSO https://downloads.1password.com/linux/tar/stable/x86_64/1password-latest.tar.gz
     sudo tar -xf 1password-latest.tar.gz
     sudo mkdir -p /opt/1Password
     sudo mv 1password-*/* /opt/1Password
-     sudo /opt/1Password/after-install.sh2
+    sudo /opt/1Password/after-install.sh
 
     # Java
     yes | sudo pacman -S jdk17-openjdk
@@ -59,10 +59,10 @@ arch_install() {
     yes | sudo pacman -Syu python3 python-pip
 
     #flatpak
-    yes | sudo pacman -Syu flatpak
+     sudo pacman -Syu flatpak
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y
+    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y 
 
     # ZSH
 
