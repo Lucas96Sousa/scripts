@@ -59,10 +59,10 @@ arch_install() {
     yes | sudo pacman -Syu python3 python-pip
 
     #flatpak
-     sudo pacman -Syu flatpak
+    sudo pacman -Syu flatpak
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y 
+    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y
 
     # ZSH
 
@@ -83,7 +83,7 @@ arch_install() {
 
 }
 
-# POP OS INSTALL
+# Deb BASES INSTALL
 deb_install() {
     sudo apt upgrade -y
 
@@ -127,6 +127,17 @@ deb_install() {
 
     source $HOME/.cargo/env
 
+    #NPM
+    curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+
+    mkdir ~/.npm-global
+    npm config set prefix '~/.npm-global'
+
+    export PATH=~/.npm-global/bin:$PATH
+
+    source ~/.profile
+
     # VS CODE MODULE
     sudo apt-get install wget gpg
     #wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
@@ -140,13 +151,53 @@ deb_install() {
 
     # GH INSTALL
 
-    	type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
-    	curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
+    type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
         sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
         sudo apt update &&
         sudo apt install gh -y
 
+}
+
+# WSL_INSTALL
+Wsl_install() {
+    sudo apt upgrade -y
+
+    # Programing modules
+
+    sudo apt install  curl gcc build-essential openjdk-17-jdk openjdk-17-jre -y
+
+    # GOLANG MODULE INSTALL
+    wget https://go.dev/dl/go1.20.3.linux-amd64.tar.gz
+    rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.20.3.linux-amd64.tar.gz
+
+    export PATH=$PATH:/usr/local/go/bin
+
+    # RUST MODULE
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+    source $HOME/.cargo/env
+
+    #NPM
+    curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+
+    mkdir ~/.npm-global
+    npm config set prefix '~/.npm-global'
+
+    export PATH=~/.npm-global/bin:$PATH
+
+    source ~/.profile
+
+    # GH INSTALL
+
+    type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
+        sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
+        sudo apt update &&
+        sudo apt install gh -y
 }
 
 #Main Menu
@@ -157,14 +208,16 @@ while true; do
     echo "--------------------"
     echo "1. Arch Linux"
     echo "2. Debian bases"
-    echo "3. exit"
+    echo "3. Wsl_install"
+    echo "4. exit"
 
     read -p "Enter number " choice
 
     case $choice in
     1) arch_install ;;
     2) deb_install ;;
-    3) exit ;;
+    3) Wsl_install ;;
+    4) exit ;;
     esac
 
     read -p "Press enter to continue...."
