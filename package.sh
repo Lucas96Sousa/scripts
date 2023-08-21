@@ -14,7 +14,7 @@ arch_install() {
     yes | makepkg -si
 
     # BRAVE AND DOCKER
-    yes | yay -S brave-bin docker
+    yes | yay -S docker
 
     #Docker
 
@@ -62,7 +62,7 @@ arch_install() {
     sudo pacman -Syu flatpak
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y
+    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler
 
     # ZSH
 
