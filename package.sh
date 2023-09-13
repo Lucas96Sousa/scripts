@@ -161,7 +161,7 @@ deb_install() {
 }
 
 # WSL_INSTALL
-Wsl_install() {
+Wsl_Debian_install() {
     sudo apt upgrade -y
 
     # Programing modules
@@ -200,6 +200,73 @@ Wsl_install() {
         sudo apt install gh -y
 }
 
+#Wsl ARCH
+Wsl_Arch_install() {
+    
+    yes | sudo pacman -Syu base-devel
+
+    # Install git, go, curl
+    yes | sudo pacman -S  go curl
+
+    # Install yay
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+
+    yes | makepkg -si
+
+    # BRAVE AND DOCKER
+    yes | yay -S docker
+
+    #Docker
+
+    sudo usermod -aG docker $USER
+    sudo systemctl start docker
+    sudo systemctl enable docker
+
+    # Programing modules
+
+    # RUST MODULE
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+    source $HOME/.cargo/env
+
+    # GH
+    yay github-cli
+
+    # Java
+    yes | sudo pacman -S jdk17-openjdk
+
+    # NPM
+    yes | sudo pacman -Syu npm nodejs
+
+    mkdir ~/.npm-global
+    npm config set prefix '~/.npm-global'
+
+    export PATH=~/.npm-global/bin:$PATH
+
+    source ~/.profile
+
+    # PYTHON
+    yes | sudo pacman -Syu python3 python-pip
+
+    # ZSH
+
+    # yes | sudo pacman -Sy zsh
+    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    # git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+    # git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+
+    #Open .zshrc
+
+    #nano ~/.zshrc
+
+    #Find the line which says plugins=(git).
+
+    #Replace that line with plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+}
+
 #Main Menu
 
 while true; do
@@ -208,16 +275,18 @@ while true; do
     echo "--------------------"
     echo "1. Arch Linux"
     echo "2. Debian bases"
-    echo "3. Wsl_install"
-    echo "4. exit"
+    echo "3. Wsl_Debian_install"
+    echo "4. Wsl_Arch_install"
+    echo "5. exit"
 
     read -p "Enter number " choice
 
     case $choice in
     1) arch_install ;;
     2) deb_install ;;
-    3) Wsl_install ;;
-    4) exit ;;
+    3) Wsl_Debian_install ;;
+    4) Wsl_Arch_install ;;
+    5) exit ;;
     esac
 
     read -p "Press enter to continue...."
