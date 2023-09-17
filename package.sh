@@ -85,15 +85,17 @@ arch_install() {
 
 # Deb BASES INSTALL
 deb_install() {
+    sudo apt install gcc build-essential openjdk-17-jdk openjdk-17-jre zsh gettext wget curl -y
+
     sudo apt upgrade -y
 
     # Flatpak modules
 
-    #sudo apt install flatpak -y
+    sudo apt install flatpak -y
 
-    #flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-    #flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y
+    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y
 
     # OH MY ZSH
 
@@ -113,8 +115,6 @@ deb_install() {
     #Replace that line with plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
 
     # Programing modules
-
-    sudo apt install gcc build-essential openjdk-17-jdk openjdk-17-jre -y
 
     # GOLANG MODULE INSTALL
     wget https://go.dev/dl/go1.20.3.linux-amd64.tar.gz
@@ -140,10 +140,10 @@ deb_install() {
 
     # VS CODE MODULE
     sudo apt-get install wget gpg
-    #wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
-    #sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-    #sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-    #rm -f packages.microsoft.gpg
+    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
+    sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+    sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+    rm -f packages.microsoft.gpg
 
     sudo apt install apt-transport-https -y
     sudo apt update
@@ -166,7 +166,7 @@ Wsl_Debian_install() {
 
     # Programing modules
 
-    sudo apt install  curl gcc build-essential openjdk-17-jdk openjdk-17-jre -y
+    sudo apt install curl gcc build-essential openjdk-17-jdk openjdk-17-jre -y
 
     # GOLANG MODULE INSTALL
     wget https://go.dev/dl/go1.20.3.linux-amd64.tar.gz
@@ -202,11 +202,11 @@ Wsl_Debian_install() {
 
 #Wsl ARCH
 Wsl_Arch_install() {
-    
+
     yes | sudo pacman -Syu base-devel
 
     # Install git, go, curl
-    yes | sudo pacman -S  go curl
+    yes | sudo pacman -S go curl
 
     # Install yay
     git clone https://aur.archlinux.org/yay.git
