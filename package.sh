@@ -85,6 +85,11 @@ arch_install() {
 
 # Deb BASES INSTALL
 deb_install() {
+
+    # Configuring git
+    git config --global user.name "Lucas Sousa"
+    git config --global user.email "lucas996oliveira@gmail.com"
+
     sudo apt install gcc build-essential openjdk-17-jdk openjdk-17-jre zsh gettext wget curl -y
 
     sudo apt upgrade -y
