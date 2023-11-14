@@ -302,18 +302,19 @@ while true; do
     echo "--------------------"
     echo "1. Arch Linux"
     echo "2. Debian bases"
-    echo "3. Wsl_Debian_install"
-    echo "4. Wsl_Arch_install"
-    echo "5. exit"
+    echo "3. Fedora" 
+    echo "4. Wsl_Debian_install"
+    echo "5. Wsl_Arch_install"
+    echo "6. exit"
 
     read -p "Enter number " choice
 
     case $choice in
     1) arch_install ;;
     2) deb_install ;;
-    3) Wsl_Debian_install ;;
-    4) Wsl_Arch_install ;;
-    5) exit ;;
+    4) Wsl_Debian_install ;;
+    5) Wsl_Arch_install ;;
+    6) exit ;;
     esac
 
     read -p "Press enter to continue...."
