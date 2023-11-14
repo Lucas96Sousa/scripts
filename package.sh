@@ -169,6 +169,20 @@ deb_install() {
 
 }
 
+Fedora_Install(){
+    sudo dnf update && sudo dnf upgrade -y
+
+    #Programing
+    #Java
+    sudo dnf install java-17-openjdk java-17-openjdk-devel 
+
+    #Nodejs
+    sudo dnf module install nodejs:18/common    
+
+    #Cpp
+    sudo dnf install cmake g++ make
+}
+
 # WSL_INSTALL
 Wsl_Debian_install() {
     sudo apt upgrade -y
