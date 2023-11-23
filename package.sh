@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 # ARCH INSTALL
 arch_install() {
-    yes | sudo pacman -Syuu
-    yes | sudo pacman -Syu base-devel
+    yes | sudo pacman -Syu
+    yes | sudo pacman -Syu base-devel lua gcc clang fish tmux
+
+     # Configuring git
+    git config --global user.name "Lucas Sousa"
+    git config --global user.email "lucas996oliveira@gmail.com"
 
     # Install git, go, curl
     yes | sudo pacman -S git go curl
@@ -13,8 +17,8 @@ arch_install() {
 
     yes | makepkg -si
 
-    # BRAVE AND DOCKER
-    yes | yay -S docker
+    # Edge, Docker and Vscode
+    yes | yay -S docker microsoft-edge-stable visual-studio-code
 
     #Docker
 
@@ -31,9 +35,6 @@ arch_install() {
 
     # GH
     yay github-cli
-
-    # CODE
-    yes | yay -S visual-studio-code-bin
 
     #1
     curl -sSO https://downloads.1password.com/linux/tar/stable/x86_64/1password-latest.tar.gz
@@ -64,23 +65,9 @@ arch_install() {
 
     flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler
 
-    # ZSH
-
-    # yes | sudo pacman -Sy zsh
-    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    # git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-    # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    # git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
-    # git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
-
-    #Open .zshrc
-
-    #nano ~/.zshrc
-
-    #Find the line which says plugins=(git).
-
-    #Replace that line with plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
-
+    # Fonts
+    cd fonts
+    lua install.lua
 }
 
 # Deb BASES INSTALL
@@ -90,7 +77,7 @@ deb_install() {
     git config --global user.name "Lucas Sousa"
     git config --global user.email "lucas996oliveira@gmail.com"
 
-    sudo apt install gcc build-essential openjdk-17-jdk openjdk-17-jre zsh gettext wget curl -y
+    sudo apt install gcc build-essential openjdk-17-jdk openjdk-17-jre fish tmux gettext  wget curl -y
 
     sudo apt upgrade -y
 
@@ -101,23 +88,6 @@ deb_install() {
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
     flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y
-
-    # OH MY ZSH
-
-    #sudo apt install zsh-autosuggestions zsh-syntax-highlighting zsh -y
-    #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    # git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-    # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    # git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
-    # git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
-
-    #Open .zshrc
-
-    #nano ~/.zshrc
-
-    #Find the line which says plugins=(git).
-
-    #Replace that line with plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
 
     # Programing modules
 
@@ -230,7 +200,11 @@ Wsl_Debian_install() {
 #Wsl ARCH
 Wsl_Arch_install() {
 
-    yes | sudo pacman -Syu base-devel
+    yes | sudo pacman -Syu base-devel gcc tmux fish 
+
+     # Configuring git
+    git config --global user.name "Lucas Sousa"
+    git config --global user.email "lucas996oliveira@gmail.com"
 
     # Install git, go, curl
     yes | sudo pacman -S go curl
@@ -276,22 +250,6 @@ Wsl_Arch_install() {
     # PYTHON
     yes | sudo pacman -Syu python3 python-pip
 
-    # ZSH
-
-    # yes | sudo pacman -Sy zsh
-    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    # git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-    # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    # git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
-    # git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
-
-    #Open .zshrc
-
-    #nano ~/.zshrc
-
-    #Find the line which says plugins=(git).
-
-    #Replace that line with plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
 }
 
 #Main Menu
