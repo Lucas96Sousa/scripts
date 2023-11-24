@@ -18,7 +18,7 @@ arch_install() {
     yes | makepkg -si
 
     # Edge, Docker and Vscode
-    yes | yay -S docker microsoft-edge-stable visual-studio-code
+    yes | yay -S docker microsoft-edge-stable visual-studio-code-bin
 
     #Docker
 
