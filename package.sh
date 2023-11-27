@@ -4,7 +4,7 @@ arch_install() {
     yes | sudo pacman -Syu
     yes | sudo pacman -Syu base-devel lua gcc clang fish tmux
 
-     # Configuring git
+    # Configuring git
     git config --global user.name "Lucas Sousa"
     git config --global user.email "lucas996oliveira@gmail.com"
 
@@ -65,9 +65,9 @@ arch_install() {
 
     flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler
 
-    # Fonts
-    cd fonts
-    lua install.lua
+    #TPM and HOMEBREW(FISH)
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
 # Deb BASES INSTALL
@@ -136,7 +136,11 @@ deb_install() {
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
         sudo apt update &&
         sudo apt install gh -y
+	
 
+    #TPM and HOMEBREW(FISH)
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
 Fedora_Install(){
@@ -156,6 +160,11 @@ Fedora_Install(){
 # WSL_INSTALL
 Wsl_Debian_install() {
     sudo apt upgrade -y
+
+
+    # Configuring git
+    git config --global user.name "Lucas Sousa"
+    git config --global user.email "lucas996oliveira@gmail.com"
 
     # Programing modules
 
@@ -195,8 +204,13 @@ Wsl_Debian_install() {
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
         sudo apt update &&
         sudo apt install gh -y
-}
+	
 
+    #TPM and HOMEBREW(FISH)
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+	
 #Wsl ARCH
 Wsl_Arch_install() {
 
@@ -250,6 +264,10 @@ Wsl_Arch_install() {
     # PYTHON
     yes | sudo pacman -Syu python3 python-pip
 
+    
+    #TPM and HOMEBREW(FISH)
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
 #Main Menu
