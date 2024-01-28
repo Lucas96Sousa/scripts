@@ -1,9 +1,3 @@
-# 🌳 Fonts Terminal Root
-Fonts Terminal Root - My fonts preferred
-> A quick alternative to [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)!
-
----
-
 # 🌒 Instalation
 ```bash
 git clone --depth=1 https://github.com/terroo/fonts
