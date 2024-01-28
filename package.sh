@@ -77,7 +77,7 @@ deb_install() {
     git config --global user.name "Lucas Sousa"
     git config --global user.email "lucas996oliveira@gmail.com"
 
-    sudo apt install gcc build-essential openjdk-17-jdk openjdk-17-jre fish tmux gettext  wget curl -y
+    sudo apt install gcc build-essential docker.io golang-go kitty tmux gettext  wget curl -y
 
     sudo apt upgrade -y
 
@@ -90,12 +90,6 @@ deb_install() {
     flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y
 
     # Programing modules
-
-    # GOLANG MODULE INSTALL
-    wget https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
-    rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
-
-    export PATH=$PATH:/usr/local/go/bin
 
     # RUST MODULE
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -168,13 +162,8 @@ Wsl_Debian_install() {
 
     # Programing modules
 
-    sudo apt install curl gcc build-essential openjdk-17-jdk openjdk-17-jre -y
+    sudo apt install gcc build-essential docker.io containerd golang-go tmux gettext  wget curl -y
 
-    # GOLANG MODULE INSTALL
-    wget https://go.dev/dl/go1.20.3.linux-amd64.tar.gz
-    rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.20.3.linux-amd64.tar.gz
-
-    export PATH=$PATH:/usr/local/go/bin
 
     # RUST MODULE
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -229,7 +218,7 @@ Wsl_Arch_install() {
 
     yes | makepkg -si
 
-    # BRAVE AND DOCKER
+    # DOCKER
     yes | yay -S docker
 
     #Docker
