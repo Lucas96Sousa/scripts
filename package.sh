@@ -162,7 +162,7 @@ Wsl_Debian_install() {
 
     # Programing modules
 
-    sudo apt install gcc build-essential docker.io containerd golang-go tmux gettext  wget curl -y
+    sudo apt install gcc build-essential docker.io containerd  tmux gettext  wget curl -y
 
 
     # RUST MODULE
