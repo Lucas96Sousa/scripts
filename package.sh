@@ -68,6 +68,10 @@ arch_install() {
     #TPM and HOMEBREW(FISH)
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 }
 
 # Deb BASES INSTALL
@@ -135,6 +139,10 @@ deb_install() {
     #TPM and HOMEBREW(FISH)
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 }
 
 Fedora_Install(){
@@ -163,6 +171,10 @@ Wsl_Debian_install() {
     # Programing modules
 
     sudo apt install gcc build-essential docker.io containerd  tmux gettext  wget curl -y
+
+    sudo usermod -aG docker $USER 
+
+    newgrp docker
 
 
     # RUST MODULE
@@ -198,6 +210,10 @@ Wsl_Debian_install() {
     #TPM and HOMEBREW(FISH)
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 }
 	
 #Wsl ARCH
@@ -257,6 +273,11 @@ Wsl_Arch_install() {
     #TPM and HOMEBREW(FISH)
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
+
 }
 
 #Main Menu
