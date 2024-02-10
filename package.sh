@@ -150,16 +150,15 @@ Fedora_Install(){
     sudo dnf update && sudo dnf upgrade -y
 
     # Terminal
-    if ! [ -x "$(command -v fish)"]; then
-        echo "Need install fish" >&2
-        exit 1
-    fi
-
-    if ! [ -x "$(command -v tmux)"]; then
-        echo "Need install tmux" >&2
-        exit 1
-    fi
-    sudo dnf install fish tmux -y
+    filenames=('/usr/bin/fish' '/usr/bin/tmux')
+    for filename in ${filenames[@]}; do
+        if [ -f $filename ]; then
+            echo "$filename exists."
+        else
+            echo "$filename does not exists need to install"
+            sudo dnf install tmux fish -y
+        fi
+    done
 
     #Programing
     #Java
