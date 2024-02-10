@@ -146,7 +146,20 @@ deb_install() {
 }
 
 Fedora_Install(){
+    # Update
     sudo dnf update && sudo dnf upgrade -y
+
+    # Terminal
+    if ! [ -x "$(command -v fish)"]; then
+        echo "Need install fish" >&2
+        exit 1
+    fi
+
+    if ! [ -x "$(command -v tmux)"]; then
+        echo "Need install tmux" >&2
+        exit 1
+    fi
+    sudo dnf install fish tmux -y
 
     #Programing
     #Java
@@ -157,7 +170,20 @@ Fedora_Install(){
 
     #Cpp
     sudo dnf install cmake g++ make
+
+
+    #Golang
+    sudo dnf install go
+
+    #TPM and HOMEBREW(FISH)
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 }
+
 
 # WSL_INSTALL
 Wsl_Debian_install() {
@@ -298,6 +324,7 @@ while true; do
     case $choice in
     1) arch_install ;;
     2) deb_install ;;
+    3) Fedora_Install ;;
     4) Wsl_Debian_install ;;
     5) Wsl_Arch_install ;;
     6) exit ;;
