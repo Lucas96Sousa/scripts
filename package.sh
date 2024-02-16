@@ -150,7 +150,7 @@ Fedora_Install(){
     sudo dnf update && sudo dnf upgrade -y
 
     # Terminal
-    filenames=('/usr/bin/fish' '/usr/bin/tmux')
+    filenames=('/usr/bin/fish', '/usr/bin/tmux')
     for filename in ${filenames[@]}; do
         if [ -f $filename ]; then
             echo "$filename exists."
