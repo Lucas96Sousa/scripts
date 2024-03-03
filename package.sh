@@ -2,7 +2,7 @@
 # ARCH INSTALL
 arch_install() {
     yes | sudo pacman -Syu
-    yes | sudo pacman -Syu base-devel lua gcc clang fish tmux
+    yes | sudo pacman -Syu base-devel lua gcc clang fish tmux neovim go
 
     # Configuring git
     git config --global user.name "Lucas Sousa"
