@@ -165,7 +165,7 @@ Fedora_Install(){
     sudo dnf install java-17-openjdk java-17-openjdk-devel 
 
     #Nodejs
-    sudo dnf module install nodejs:18/common    
+    sudo dnf module install nodejs:20/common    
 
     #Cpp
     sudo dnf install cmake g++ make
@@ -173,6 +173,9 @@ Fedora_Install(){
 
     #Golang
     sudo dnf install go
+
+    #Flatpak 
+    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler
 
     #TPM and HOMEBREW(FISH)
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
