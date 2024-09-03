@@ -4,10 +4,7 @@ arch_install() {
     yes | sudo pacman -Syu
     yes | sudo pacman -Syu base-devel lua gcc clang fish tmux neovim go
 
-    # Configuring git
-    git config --global user.name "Lucas Sousa"
-    git config --global user.email "lucas996oliveira@gmail.com"
-
+   
     # Install git, go, curl
     yes | sudo pacman -S git go curl
 
@@ -77,9 +74,7 @@ arch_install() {
 # Deb BASES INSTALL
 deb_install() {
 
-    # Configuring git
-    git config --global user.name "Lucas Sousa"
-    git config --global user.email "lucas996oliveira@gmail.com"
+    
 
     sudo apt install gcc build-essential docker.io golang-go kitty tmux gettext  wget curl -y
 
@@ -209,9 +204,6 @@ Wsl_Debian_install() {
     sudo apt upgrade -y
 
 
-    # Configuring git
-    git config --global user.name "Lucas Sousa"
-    git config --global user.email "lucas996oliveira@gmail.com"
 
     # Programing modules
 
@@ -266,9 +258,7 @@ Wsl_Arch_install() {
 
     yes | sudo pacman -Syu base-devel gcc tmux fish 
 
-     # Configuring git
-    git config --global user.name "Lucas Sousa"
-    git config --global user.email "lucas996oliveira@gmail.com"
+     
 
     # Install git, go, curl
     yes | sudo pacman -S go curl
