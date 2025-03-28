@@ -144,9 +144,7 @@ Fedora_Install(){
     # Update
     sudo dnf update && sudo dnf upgrade -y
 
-     #Configuring git
-    git config --global user.name "Lucas Sousa"
-    git config --global user.email "lucas996oliveira@gmail.com"
+     
 
     # Terminal
     filenames=('/usr/bin/fish', '/usr/bin/tmux')
