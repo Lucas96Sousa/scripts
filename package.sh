@@ -76,7 +76,7 @@ deb_install() {
 
     
 
-    sudo apt install gcc build-essential docker.io golang-go kitty tmux gettext  wget curl -y
+    sudo apt install gcc build-essential podman python3-pip golang-go zsh kitty tmux gettext  wget curl -y
 
     sudo apt upgrade -y
 
@@ -86,7 +86,7 @@ deb_install() {
 
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler -y
+    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity -y
 
     # Programing modules
 
