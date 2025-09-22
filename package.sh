@@ -329,8 +329,8 @@ while true; do
     read -p "Enter number " choice
 
     case $choice in
-    1) arch_install ;;
-    2) deb_install ;;
+    1) Arch_Install ;;
+    2) Deb_Install ;;
     3) Fedora_Install ;;
     4) Wsl_Debian_install ;;
     5) Wsl_Arch_install ;;
