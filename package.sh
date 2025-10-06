@@ -13,9 +13,10 @@
     # Programing modules
 
     # RUST MODULE
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    
+    #curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-    source $HOME/.cargo/env
+    #source $HOME/.cargo/env
 
     #NPM
     sudo apt-get install -y ca-certificates curl gnupg
@@ -43,7 +44,6 @@
     sudo apt update
     sudo apt install code -y
 
-    
-}
+echo "Instalação finalizada"
 
 
