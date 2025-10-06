@@ -19,7 +19,7 @@
     #source $HOME/.cargo/env
 
     #NPM
-    sudo apt-get install -y ca-certificates curl gnupg
+    sudo apt-get install -y ca-certificates gnupg
     sudo mkdir -p /etc/apt/keyrings
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
     NODE_MAJOR=20
