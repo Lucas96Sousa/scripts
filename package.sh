@@ -1,18 +1,26 @@
 #!/usr/bin/env bash
 # ARCH INSTALL
-arch_install() {
+Arch_Install() {
     yes | sudo pacman -Syu
-    yes | sudo pacman -Syu base-devel lua gcc clang fish tmux neovim go
+    yes | sudo pacman -Syu base-devel lua gcc clang neovim go
 
    
     # Install git, go, curl
     yes | sudo pacman -S git go curl
-
-    # Install yay
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-
-    yes | makepkg -si
+ # Install yay
+    # Terminal
+    filenames=('/usr/bin/zsh', '/usr/bin/tmux', '/bin/yay')
+    for filename in ${filenames[@]}; do
+        if [ -f $filename ]; then
+            echo "$filename exists."
+        else
+            echo "$filename does not exists need to install"
+            yes | sudo pacman -S kitty tmux zsh -y
+	    git clone https://aur.archlinux.org/yay.git 
+    	    mv yay $HOME/$USER && cd $HOME/$USER/yay
+	    yes | makepkg -si
+        fi
+    done
 
     # Edge, Docker and Vscode
     yes | yay -S docker docker-compose microsoft-edge-stable visual-studio-code-bin
@@ -33,15 +41,8 @@ arch_install() {
     # GH
     yay github-cli
 
-    #1
-    curl -sSO https://downloads.1password.com/linux/tar/stable/x86_64/1password-latest.tar.gz
-    sudo tar -xf 1password-latest.tar.gz
-    sudo mkdir -p /opt/1Password
-    sudo mv 1password-*/* /opt/1Password
-    sudo /opt/1Password/after-install.sh
-
     # Java
-    yes | sudo pacman -S jdk17-openjdk
+    yes | sudo pacman -S jdk21-openjdk
 
     # NPM
     yes | sudo pacman -Syu npm nodejs
@@ -60,8 +61,7 @@ arch_install() {
     sudo pacman -Syu flatpak
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity com.github.sdv43.whaler
-
+    flatpak install flathub com.discordapp.Discord io.beekeeperstudio.Studio io.dbeaver.DBeaverCommunity -y 
     #TPM and HOMEBREW(FISH)
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -254,7 +254,7 @@ Wsl_Debian_install() {
 #Wsl ARCH
 Wsl_Arch_install() {
 
-    yes | sudo pacman -Syu base-devel gcc tmux fish 
+    yes | sudo pacman -Syu base-devel gcc
 
      
 
@@ -262,10 +262,19 @@ Wsl_Arch_install() {
     yes | sudo pacman -S go curl
 
     # Install yay
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-
-    yes | makepkg -si
+    # Terminal
+    filenames=('/usr/bin/zsh', '/usr/bin/tmux', '/bin/yay')
+    for filename in ${filenames[@]}; do
+        if [ -f $filename ]; then
+            echo "$filename exists."
+        else
+            echo "$filename does not exists need to install"
+            yes | sudo pacman -S kitty tmux zsh -y
+	    git clone https://aur.archlinux.org/yay.git 
+    	    cd yay
+	    yes | makepkg -si
+        fi
+    done
 
     # DOCKER
     yes | yay -S docker
